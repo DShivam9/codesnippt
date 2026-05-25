@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import CodeEditor from "@/components/CodeEditor";
 import ExportPanel from "@/components/ExportPanel";
-import Link from "next/link";
+import TransitionLink from "@/components/TransitionLink";
 import { ArrowLeft, Settings2 } from "lucide-react";
 
 const THEMES = [
@@ -120,9 +120,9 @@ export default function StudioPage() {
         {/* Header */}
         <div className="p-6 border-b-8 border-[#050505] bg-[#050505] text-[#FAFAFA] flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-3">
-            <Link href="/" className="hover:text-[#FF3300] transition-colors">
+            <TransitionLink href="/" variant="back" className="hover:text-[#FF3300] transition-colors">
               <ArrowLeft size={28} strokeWidth={3} />
-            </Link>
+            </TransitionLink>
             <h1 className="text-3xl font-black uppercase tracking-tighter">Studio</h1>
           </div>
           <Settings2 size={24} />
