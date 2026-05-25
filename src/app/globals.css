@@ -85,3 +85,125 @@
     color: var(--background);
   }
 }
+
+@layer utilities {
+  .animate-gradient {
+    animation: hue-rotate 8s linear infinite;
+  }
+
+  @keyframes hue-rotate {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Static Patterns */
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: #050505;
+  }
+  
+  .bg-grid-pattern-light {
+    background-image: linear-gradient(to right, rgba(5,5,5,0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(5,5,5,0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: #FAFAFA;
+  }
+
+  .bg-dots-pattern {
+    background-image: radial-gradient(rgba(255,255,255,0.15) 2px, transparent 2px);
+    background-size: 24px 24px;
+    background-color: #050505;
+  }
+
+  .bg-stripes-warning {
+    background: repeating-linear-gradient(
+      -45deg,
+      #FF9F0A,
+      #FF9F0A 20px,
+      #050505 20px,
+      #050505 40px
+    );
+  }
+
+  /* Animated Patterns (Hardware Accelerated) */
+  .animate-stripes {
+    position: relative;
+    overflow: hidden;
+    background-color: #050505;
+  }
+  .animate-stripes::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background: repeating-linear-gradient(
+      -45deg,
+      #FF3300,
+      #FF3300 24px,
+      #050505 24px,
+      #050505 48px
+    );
+    background-size: 67.88px 67.88px;
+    animation: pan-stripes 2s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  @keyframes pan-stripes {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(67.88px, 0, 0); }
+  }
+
+  .animate-blueprint {
+    position: relative;
+    overflow: hidden;
+    background-color: #0A84FF;
+  }
+  .animate-blueprint::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: pan-diagonal 6s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .animate-dots {
+    position: relative;
+    overflow: hidden;
+    background-color: #050505;
+  }
+  .animate-dots::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: radial-gradient(rgba(255, 51, 0, 0.5) 3px, transparent 3px);
+    background-size: 32px 32px;
+    animation: pan-diagonal-dots 8s linear infinite reverse;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  @keyframes pan-diagonal {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(40px, 40px, 0); }
+  }
+  
+  @keyframes pan-diagonal-dots {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(32px, 32px, 0); }
+  }
+}

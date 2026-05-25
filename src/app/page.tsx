@@ -86,28 +86,28 @@ export default function LandingPage() {
       sessionStorage.setItem("hasVisitedHome", "true");
 
       tl.fromTo(".nav-bar",
-        { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
+        { y: "-100%" },
+        { y: "0%", duration: 0.8, ease: "power3.out" }
       )
       .fromTo(".hero-bg-marquees", 
         { opacity: 0 }, 
-        { opacity: 1, duration: 1.5, ease: "power2.inOut" },
-        "-=0.4"
+        { opacity: 1, duration: 1.2, ease: "power2.out" },
+        "<"
       )
       .fromTo(".hero-word", 
-        { y: 150, opacity: 0, rotateX: -90, rotateY: 10, z: -200 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 0.8, stagger: 0.05, ease: "power3.out" },
+        { y: "100%", opacity: 0 },
+        { y: "0%", opacity: 1, duration: 0.6, ease: "expo.out", stagger: 0.08 },
         "-=0.4"
       )
       .fromTo(".hero-cta",
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
-        "-=0.4"
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        "-=0.6"
       )
-      .fromTo([".hero-marquee", ".hero-marquee-reverse"],
+      .fromTo([".hero-marquee", ".hero-marquee-fast"],
         { opacity: 0 },
-        { opacity: 1, duration: 1.5, ease: "power2.inOut" },
-        "-=0.2"
+        { opacity: 1, duration: 1, ease: "power2.out" },
+        "-=0.4"
       );
     }
 
@@ -218,7 +218,6 @@ export default function LandingPage() {
         
         <div className="hidden md:flex items-center gap-8 lg:gap-12 text-sm font-bold tracking-widest uppercase">
           <Link href="#features" className="hover:bg-[#FF9F0A] px-3 py-1 border-4 border-transparent hover:border-[#000] hover:shadow-[4px_4px_0px_#000] transition-all">Features</Link>
-          <Link href="#engine" className="hover:bg-[#FF9F0A] px-3 py-1 border-4 border-transparent hover:border-[#000] hover:shadow-[4px_4px_0px_#000] transition-all">Engine</Link>
           <Link href="#previews" className="hover:bg-[#FF9F0A] px-3 py-1 border-4 border-transparent hover:border-[#000] hover:shadow-[4px_4px_0px_#000] transition-all">Previews</Link>
           <Link href="#faq" className="hover:bg-[#FF9F0A] px-3 py-1 border-4 border-transparent hover:border-[#000] hover:shadow-[4px_4px_0px_#000] transition-all">FAQ</Link>
         </div>
@@ -234,7 +233,7 @@ export default function LandingPage() {
       </nav>
 
       {/* HERO - Cinematic Center Layout */}
-      <section className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#050505]">
+      <section className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#050505] pt-32 pb-16">
         
         {/* Brutalist Typographic Background */}
         <div className="hero-bg-marquees absolute inset-0 w-full h-full pointer-events-none">
@@ -252,67 +251,94 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className="max-w-6xl w-full relative z-10 text-center flex flex-col items-center mt-12 [perspective:1000px]">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl leading-tight font-bold tracking-tight w-full max-w-5xl mb-16 flex flex-wrap justify-center text-center">
-            {("Turn your source code into beautiful, shareable images.").split(" ").map((word, i) => (
-              <span key={i} className="hero-word inline-block mr-3 md:mr-4 origin-bottom">{word}</span>
+        <div className="max-w-7xl w-full relative z-10 text-center flex flex-col items-center [perspective:1000px]">
+          <h1 className="hero-title text-4xl md:text-6xl lg:text-[5rem] leading-snug font-bold tracking-normal w-full max-w-5xl mb-16 text-center px-4 flex flex-wrap justify-center gap-x-[0.3em]">
+            {["Turn", "your", "source", "code", "into"].map((word, i) => (
+              <span key={i} className="inline-block overflow-hidden">
+                <span className="hero-word inline-block">{word}</span>
+              </span>
             ))}
+            {["beautiful,", "shareable"].map((word, i) => (
+              <span key={`accent-${i}`} className="inline-block overflow-hidden">
+                <span className="hero-word inline-block text-[#FF9F0A]">{word}</span>
+              </span>
+            ))}
+            <span className="inline-block overflow-hidden">
+              <span className="hero-word inline-block">images.</span>
+            </span>
           </h1>
 
-          <div className="hero-cta flex flex-col md:flex-row items-center gap-8 border-4 border-[#FAFAFA] bg-black/50 backdrop-blur-md p-8 md:p-12 shadow-[16px_16px_0px_#FF9F0A] max-w-4xl">
-            <p className="text-xl md:text-3xl font-bold uppercase tracking-tight leading-tight text-left">
-              Paste code. Pick theme. Export stunning screenshots. Built for developers who refuse to share boring text.
-            </p>
+          <div className="hero-cta flex flex-col w-full max-w-6xl border-4 border-[#FAFAFA] bg-[#111] shadow-[16px_16px_0px_#FF9F0A] overflow-hidden">
+            {/* Window Header */}
+            <div className="flex items-center gap-2 border-b-4 border-[#FAFAFA] p-4 bg-[#000]">
+              <div className="w-4 h-4 bg-[#FF5F56] border-2 border-[#FAFAFA]" />
+              <div className="w-4 h-4 bg-[#FFBD2E] border-2 border-[#FAFAFA]" />
+              <div className="w-4 h-4 bg-[#27C93F] border-2 border-[#FAFAFA]" />
+            </div>
             
-            <BrutalistButton href="/studio" className="w-full md:w-auto text-xl flex items-center justify-center gap-4 bg-[#FF9F0A] text-[#000] border-[#000] shadow-[8px_8px_0px_#FAFAFA] hover:shadow-[12px_12px_0px_#FAFAFA] shrink-0">
-              START RENDERING
-              <ArrowRight className="w-6 h-6" strokeWidth={3} />
-            </BrutalistButton>
+            {/* Window Body */}
+            <div className="p-8 md:p-16 flex flex-col md:flex-row items-center md:items-stretch gap-12 text-left bg-black/80 backdrop-blur-md">
+              <div className="flex-1 font-mono text-base md:text-2xl font-bold tracking-tight leading-relaxed overflow-x-auto w-full">
+                <span className="text-[#FF9F0A]">const</span> <span className="text-[#FAFAFA]">workflow</span> <span className="text-[#FF9F0A]">=</span> <span className="text-[#FAFAFA]">{"{"}</span><br/>
+                &nbsp;&nbsp;<span className="text-[#00ADD8]">step1:</span> <span className="text-[#27C93F]">'Paste code'</span>,<br/>
+                &nbsp;&nbsp;<span className="text-[#00ADD8]">step2:</span> <span className="text-[#27C93F]">'Pick theme'</span>,<br/>
+                &nbsp;&nbsp;<span className="text-[#00ADD8]">step3:</span> <span className="text-[#27C93F]">'Export stunning screenshots'</span><br/>
+                <span className="text-[#FAFAFA]">{"}"};</span><br/>
+                <br/>
+                <span className="text-[#8B8B9A]">// Built for developers who refuse</span><br/>
+                <span className="text-[#8B8B9A]">// to share boring text.</span>
+              </div>
+              
+              <BrutalistButton href="/studio" className="w-full md:w-auto text-xl md:text-2xl flex items-center justify-center gap-4 bg-[#FF9F0A] text-[#000] border-[#000] shadow-[8px_8px_0px_#FAFAFA] hover:shadow-[12px_12px_0px_#FAFAFA] shrink-0 self-center">
+                START RENDERING
+                <ArrowRight className="w-6 h-6" strokeWidth={3} />
+              </BrutalistButton>
+            </div>
           </div>
         </div>
       </section>
 
       {/* BENTO GRID (Interest) - Gapless & Mathematically Perfect */}
-      <section id="engine" className="relative py-32 md:py-48 px-4 md:px-12 bg-[#FAFAFA] text-[#000] border-b-8 border-[#000]">
+      <section id="features" className="relative pt-16 pb-32 md:pt-24 md:pb-48 px-4 md:px-12 bg-[#FAFAFA] text-[#000] border-b-8 border-[#000]">
         <div className="max-w-7xl mx-auto flex flex-col">
           <h2 className="scroll-reveal text-[clamp(4rem,10vw,10rem)] leading-none font-black tracking-tighter mb-20 uppercase border-b-8 border-[#000] pb-6">
-            THE ENGINE
+            FEATURES
           </h2>
           
           <div ref={bentoRef} className="grid grid-cols-1 lg:grid-cols-4 grid-flow-dense gap-1 border-4 border-[#000] bg-[#000]">
             {/* Card 1: Cinematic Large */}
-            <div className="bento-card col-span-1 lg:col-span-2 row-span-2 bg-[#FAFAFA] p-12 flex flex-col justify-between group hover:bg-[#FF9F0A] transition-all duration-300 hover:z-10 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_#000] min-h-[500px]">
-              <MonitorSmartphone className="w-20 h-20 text-[#000] group-hover:scale-110 transition-transform duration-300 mb-8" strokeWidth={2} />
+            <div className="bento-card col-span-1 lg:col-span-2 row-span-2 bg-[#FAFAFA] p-12 flex flex-col justify-between min-h-[500px] group hover:bg-[#FF9F0A] transition-colors duration-300">
+              <MonitorSmartphone className="w-20 h-20 text-[#000] mb-8 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
               <div>
-                <h3 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 uppercase leading-none">Retina<br/>Ready</h3>
-                <p className="text-2xl font-bold max-w-md uppercase">Render outputs at massive 3x resolutions. Crisp text on every high-density display.</p>
+                <h3 className="text-5xl md:text-6xl font-black tracking-tighter mb-6 uppercase leading-none">Beautiful<br/>Backgrounds</h3>
+                <p className="text-2xl font-bold max-w-md uppercase">Choose from vibrant gradients or dynamic animated patterns to make your code pop on social media.</p>
               </div>
             </div>
 
             {/* Card 2: Wide */}
-            <div className="bento-card col-span-1 lg:col-span-2 row-span-1 bg-[#111] text-[#FAFAFA] p-10 flex flex-col justify-between group hover:bg-[#FF9F0A] hover:text-[#000] transition-all duration-300 hover:z-10 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_#000]">
+            <div className="bento-card col-span-1 lg:col-span-2 row-span-1 bg-[#FAFAFA] text-[#000] p-10 flex flex-col justify-between group hover:bg-[#FF9F0A] transition-colors duration-300">
               <Zap className="w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
               <div>
-                <h3 className="text-4xl font-black tracking-tighter mb-2 uppercase">Zero Latency</h3>
-                <p className="text-xl font-bold uppercase">Client-side rendering pipeline.</p>
+                <h3 className="text-4xl font-black tracking-tighter mb-2 uppercase">Complete Control</h3>
+                <p className="text-xl font-bold uppercase">Tweak window controls, padding, and drop shadows to dial in the perfect look.</p>
               </div>
             </div>
 
             {/* Card 3: Square */}
-            <div className="bento-card col-span-1 lg:col-span-1 row-span-1 bg-[#FAFAFA] p-10 flex flex-col justify-between group hover:bg-[#000] hover:text-[#FAFAFA] transition-all duration-300 hover:z-10 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_#FF9F0A]">
+            <div className="bento-card col-span-1 lg:col-span-1 row-span-1 bg-[#FAFAFA] text-[#000] p-10 flex flex-col justify-between group hover:bg-[#FF9F0A] transition-colors duration-300">
               <Layers className="w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
               <div>
-                <h3 className="text-3xl font-black tracking-tighter mb-2 uppercase">Layered Arch</h3>
-                <p className="text-lg font-bold uppercase">Absolute control.</p>
+                <h3 className="text-3xl font-black tracking-tighter mb-2 uppercase">Custom Colors</h3>
+                <p className="text-lg font-bold uppercase">Pick exact hex colors for borders and shadows to match your brand.</p>
               </div>
             </div>
 
             {/* Card 4: Square Accent */}
-            <div className="bento-card col-span-1 lg:col-span-1 row-span-1 bg-[#FF9F0A] text-[#000] p-10 flex flex-col justify-between group hover:bg-[#FAFAFA] transition-all duration-300 hover:z-10 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[12px_12px_0px_#000]">
+            <div className="bento-card col-span-1 lg:col-span-1 row-span-1 bg-[#FAFAFA] text-[#000] p-10 flex flex-col justify-between group hover:bg-[#FF9F0A] transition-colors duration-300">
               <MousePointerClick className="w-16 h-16 mb-4 group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
               <div>
-                <h3 className="text-3xl font-black tracking-tighter mb-2 uppercase">Precision</h3>
-                <p className="text-lg font-bold uppercase">Magnetic exactness.</p>
+                <h3 className="text-3xl font-black tracking-tighter mb-2 uppercase">Syntax Themes</h3>
+                <p className="text-lg font-bold uppercase">Gorgeous light and dark themes with automatic language detection.</p>
               </div>
             </div>
           </div>
@@ -320,7 +346,7 @@ export default function LandingPage() {
       </section>
 
       {/* THEME ARCHITECTURE (Desire) - Scrubbing Text Reveal */}
-      <section id="themes" className="relative py-32 md:py-48 px-6 md:px-12 bg-[#050505] overflow-hidden">
+      <section id="previews" className="relative py-32 md:py-48 px-6 md:px-12 bg-[#050505] overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 relative z-10">
           
           <div className="flex-1 w-full scroll-reveal">
