@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Snipcast 📸
 
-## Getting Started
+**Snipcast** is a highly interactive, client-side code snippet image generator featuring an unapologetic **brutalist aesthetic**. 
 
-First, run the development server:
+Turn your raw code into stunning, high-contrast, shareable images for Twitter/X, LinkedIn, blogs, or presentations.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features ✨
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* **Brutalist UI:** A bold, striking interface with maximum contrast, hard shadows, and thick borders.
+* **Real-time Preview:** See exactly what your snippet will look like instantly as you type.
+* **Syntax Highlighting:** Powered by \`shiki\` for gorgeous, accurate token highlighting.
+* **28+ Themes:** From GitHub Dark to Synthwave-84, find the exact vibe you're looking for.
+* **Language Support:** Full support for JavaScript, TypeScript, Python, Rust, Go, HTML, CSS, Bash, JSON, SQL, and more.
+* **Custom Backgrounds:** Choose from a curated selection of vibrant, eye-catching gradient backgrounds or solid high-contrast colors.
+* **Fluid Export:** Export straight to a high-quality PNG leveraging \`html-to-image\`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack 🛠️
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Framework:** Next.js 14 (App Router) & React
+* **Styling:** Tailwind CSS & Custom CSS variables
+* **Animations:** GSAP (GreenSock) for cinematic, high-performance timeline animations
+* **Icons:** Lucide React
+* **Highlighting:** Shiki
+* **Exporting:** html-to-image
 
-## Learn More
+## Philosophy 🧠
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Most code snippet tools try to be completely invisible and minimalistic. Snipcast goes the opposite direction. The tool itself is an experience. It embraces brutalism to make the process of sharing your code feel creative, deliberate, and undeniably stylish. 
