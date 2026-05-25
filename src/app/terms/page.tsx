@@ -1,5 +1,15 @@
 import React from "react";
 import TransitionLink from "@/components/TransitionLink";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "SNIPCAST Terms of Service — Use our free code snippet image generator with full commercial rights. Your rendered code images are 100% yours.",
+  alternates: {
+    canonical: "https://snipcast.dev/terms",
+  },
+};
 
 export default function TermsOfService() {
   return (

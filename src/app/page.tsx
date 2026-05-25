@@ -208,7 +208,7 @@ export default function LandingPage() {
     <main ref={containerRef} className="overflow-x-hidden w-full max-w-full bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#FF9F0A] selection:text-[#000]">
       
       {/* Navigation - Brutalist Navbar */}
-      <nav className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-3 md:py-4 border-b-4 border-[#000] bg-[#FAFAFA] text-[#000]">
+      <nav aria-label="Main navigation" className="nav-bar fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-3 md:py-4 border-b-4 border-[#000] bg-[#FAFAFA] text-[#000]">
         <div className="flex items-center gap-3">
           <div className="bg-[#FF9F0A] p-1.5 border-4 border-[#000]">
             <Code2 className="w-5 h-5 md:w-6 md:h-6 text-[#000]" strokeWidth={3} />
@@ -223,8 +223,8 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="https://github.com/DShivam9/codesnippt" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center justify-center bg-[#FAFAFA] text-[#000] p-2 border-4 border-[#000] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[4px_4px_0px_#000] transition-all hover:bg-[#FF9F0A]">
-            <SiGithub className="w-5 h-5" />
+          <a href="https://github.com/DShivam9/snipcast" target="_blank" rel="noopener noreferrer" aria-label="View SNIPCAST source code on GitHub" className="hidden md:flex items-center justify-center bg-[#FAFAFA] text-[#000] p-2 border-4 border-[#000] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[4px_4px_0px_#000] transition-all hover:bg-[#FF9F0A]">
+            <SiGithub className="w-5 h-5" aria-hidden="true" />
           </a>
           <TransitionLink href="/studio" className="bg-[#FF9F0A] text-[#000] px-6 md:px-8 py-3 border-4 border-[#000] font-black tracking-widest text-sm uppercase hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[4px_4px_0px_#000] transition-all">
             Launch App
@@ -233,7 +233,7 @@ export default function LandingPage() {
       </nav>
 
       {/* HERO - Cinematic Center Layout */}
-      <section className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#050505] pt-32 pb-16">
+      <section aria-label="Hero — Code snippet image generator" className="min-h-screen relative flex items-center justify-center overflow-hidden bg-[#050505] pt-32 pb-16">
         
         {/* Brutalist Typographic Background */}
         <div className="hero-bg-marquees absolute inset-0 w-full h-full pointer-events-none">
@@ -299,7 +299,7 @@ export default function LandingPage() {
       </section>
 
       {/* BENTO GRID (Interest) - Gapless & Mathematically Perfect */}
-      <section id="features" className="relative pt-16 pb-32 md:pt-24 md:pb-48 px-4 md:px-12 bg-[#FAFAFA] text-[#000] border-b-8 border-[#000]">
+      <section id="features" aria-label="SNIPCAST features — themes, backgrounds, syntax highlighting" className="relative pt-16 pb-32 md:pt-24 md:pb-48 px-4 md:px-12 bg-[#FAFAFA] text-[#000] border-b-8 border-[#000]">
         <div className="max-w-7xl mx-auto flex flex-col">
           <h2 className="scroll-reveal text-[clamp(4rem,10vw,10rem)] leading-none font-black tracking-tighter mb-20 uppercase border-b-8 border-[#000] pb-6">
             FEATURES
@@ -346,7 +346,7 @@ export default function LandingPage() {
       </section>
 
       {/* THEME ARCHITECTURE (Desire) - Scrubbing Text Reveal */}
-      <section id="previews" className="relative py-32 md:py-48 px-6 md:px-12 bg-[#050505] overflow-hidden">
+      <section id="previews" aria-label="Theme preview — code to image transformation" className="relative py-32 md:py-48 px-6 md:px-12 bg-[#050505] overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 relative z-10">
           
           <div className="flex-1 w-full scroll-reveal">
@@ -383,7 +383,7 @@ export default function LandingPage() {
       </section>
 
       {/* INFINITE MARQUEE & LANGUAGES */}
-      <section className="marquee-section relative py-32 border-t-8 border-b-8 border-[#FAFAFA] bg-[#FF9F0A] overflow-hidden flex flex-col justify-center">
+      <section aria-label="Supported programming languages" className="marquee-section relative py-32 border-t-8 border-b-8 border-[#FAFAFA] bg-[#FF9F0A] overflow-hidden flex flex-col justify-center">
         <div className="massive-marquee absolute inset-0 flex items-center w-[200vw]">
           <span className="text-[25vw] font-black uppercase whitespace-nowrap tracking-tighter text-[#000] opacity-20 mix-blend-overlay">
             EVERY LANGUAGE EVERY LANGUAGE EVERY LANGUAGE EVERY LANGUAGE
@@ -400,7 +400,7 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ SECTION */}
-      <section id="faq" className="relative py-32 bg-[#050505] border-t-8 border-[#FAFAFA]">
+      <section id="faq" aria-label="Frequently asked questions about SNIPCAST code image generator" className="relative py-32 bg-[#050505] border-t-8 border-[#FAFAFA]">
         <div className="scroll-reveal max-w-5xl mx-auto px-6">
           <h2 className="text-[clamp(3rem,8vw,6rem)] font-black uppercase tracking-tighter text-[#FAFAFA] mb-16 leading-[0.85]">
             FREQUENTLY<br/>ASKED.
@@ -437,8 +437,58 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* SEO CONTENT — Visually hidden but indexable by search engines */}
+      <section aria-label="About SNIPCAST" className="sr-only">
+        <h2>SNIPCAST — The Best Free Code Snippet Image Generator</h2>
+        <p>
+          SNIPCAST is a free, open-source code snippet image generator that transforms your source code into 
+          beautiful, shareable images. Whether you need code screenshots for Twitter, blog posts, documentation, 
+          presentations, or social media — SNIPCAST is the ultimate code-to-image tool for developers.
+        </p>
+        <h3>Why Developers Choose SNIPCAST Over Carbon and Ray.so</h3>
+        <p>
+          Unlike Carbon, Ray.so, Snappify, and Chalk.ist, SNIPCAST offers a completely free experience with 
+          more customization options. Create stunning code images with 18+ syntax highlighting themes including 
+          GitHub Dark, Dracula, Nord, Tokyo Night, Monokai, and more. Choose from gradient backgrounds, animated 
+          patterns, or solid colors to make your code pop.
+        </p>
+        <h3>Supported Programming Languages</h3>
+        <p>
+          Generate beautiful code images for JavaScript, TypeScript, Python, Rust, Go, C++, Swift, Kotlin, Ruby, 
+          PHP, Java, C#, Dart, Scala, Haskell, Elixir, Clojure, and 30+ more programming languages with automatic 
+          syntax detection and highlighting powered by Shiki.
+        </p>
+        <h3>Features That Make SNIPCAST the Best Code Screenshot Tool</h3>
+        <ul>
+          <li>Beautiful gradient and animated backgrounds for code images</li>
+          <li>18+ editor themes with syntax highlighting for 30+ languages</li>
+          <li>Custom padding, border thickness, and drop shadow controls</li>
+          <li>Window controls (macOS-style traffic light dots)</li>
+          <li>One-click PNG and SVG export at any resolution</li>
+          <li>Custom hex colors for borders and shadows to match your brand</li>
+          <li>100% client-side — your code never leaves your browser</li>
+          <li>Free and open source on GitHub</li>
+          <li>No account required — just paste code and export</li>
+        </ul>
+        <h3>How to Create a Code Snippet Image</h3>
+        <ol>
+          <li>Open SNIPCAST Studio at snipcast.dev/studio</li>
+          <li>Paste your source code into the editor</li>
+          <li>Choose a syntax theme (GitHub Dark, Dracula, Nord, Tokyo Night, etc.)</li>
+          <li>Pick a background — gradient, animated pattern, or solid color</li>
+          <li>Adjust padding, borders, and shadows to your liking</li>
+          <li>Export as PNG or SVG in one click</li>
+        </ol>
+        <h3>Use Cases for Code Snippet Images</h3>
+        <p>
+          Code images are perfect for sharing on Twitter/X, LinkedIn, Instagram, blog posts, README files, 
+          technical documentation, slide decks, YouTube thumbnails, dev.to articles, Hashnode posts, Medium 
+          articles, and any platform where you want your code to look professional and eye-catching.
+        </p>
+      </section>
+
       {/* MASSIVE FOOTER */}
-      <footer className="bg-[#000] text-[#FAFAFA] pt-12 pb-6 flex flex-col border-t-8 border-[#FAFAFA]">
+      <footer role="contentinfo" className="bg-[#000] text-[#FAFAFA] pt-12 pb-6 flex flex-col border-t-8 border-[#FAFAFA]">
         <div className="scroll-reveal max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8 mb-12 border-b-8 border-[#FAFAFA] pb-10 px-6 md:px-12">
           <div className="flex-1">
             <h2 className="text-[clamp(3rem,8vw,8rem)] leading-[0.8] font-black tracking-tighter uppercase mb-6">
@@ -458,7 +508,7 @@ export default function LandingPage() {
         <div className="w-full flex flex-col items-center overflow-hidden scroll-reveal mt-4">
           <div className="w-full max-w-7xl flex flex-col md:flex-row justify-between items-center text-sm md:text-xl font-black uppercase tracking-widest mb-6 text-[#FAFAFA]/70 gap-6 px-6 md:px-12">
             <div className="flex gap-4 md:gap-8 flex-wrap justify-center md:justify-start">
-              <a href="https://github.com/DShivam9/codesnippt" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9F0A] transition-colors">GITHUB</a>
+              <a href="https://github.com/DShivam9/snipcast" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF9F0A] transition-colors">GITHUB</a>
               <TransitionLink href="/privacy" variant="legal" className="hover:text-[#FF9F0A] transition-colors">PRIVACY POLICY</TransitionLink>
               <TransitionLink href="/terms" variant="legal" className="hover:text-[#FF9F0A] transition-colors">TERMS OF SERVICE</TransitionLink>
             </div>

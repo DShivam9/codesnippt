@@ -2,6 +2,32 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ── Sleek scrollbar ──────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: rgba(5, 5, 5, 0.3) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 0;
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(5, 5, 5, 0.25);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(5, 5, 5, 0.5);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -135,29 +161,23 @@
   .animate-stripes {
     position: relative;
     overflow: hidden;
-    background-color: #050505;
-  }
-  .animate-stripes::before {
-    content: "";
-    position: absolute;
-    inset: -100%;
-    width: 300%;
-    height: 300%;
-    background: repeating-linear-gradient(
+    background: linear-gradient(
       -45deg,
+      #0f0c29,
+      #302b63,
+      #24243e,
       #FF3300,
-      #FF3300 24px,
-      #050505 24px,
-      #050505 48px
+      #0f0c29,
+      #00b4d8,
+      #302b63
     );
-    background-size: 67.88px 67.88px;
-    animation: pan-stripes 2s linear infinite;
-    pointer-events: none;
-    z-index: 0;
+    background-size: 400% 400%;
+    animation: aurora-flow 6s ease infinite;
   }
-  @keyframes pan-stripes {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(67.88px, 0, 0); }
+  @keyframes aurora-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .animate-blueprint {
@@ -205,5 +225,70 @@
   @keyframes pan-diagonal-dots {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(32px, 32px, 0); }
+  }
+
+  /* Checkerboard — dark panning checker */
+  .animate-checker {
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1a2e;
+  }
+  .animate-checker::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background-image:
+      repeating-conic-gradient(rgba(255,255,255,0.06) 0% 25%, transparent 0% 50%);
+    background-size: 48px 48px;
+    animation: pan-diagonal 5s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Crosses — minimal plus signs */
+  .animate-crosses {
+    position: relative;
+    overflow: hidden;
+    background-color: #0d1117;
+  }
+  .animate-crosses::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background-image:
+      linear-gradient(to right, rgba(110, 231, 183, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(110, 231, 183, 0.15) 1px, transparent 1px);
+    background-size: 28px 28px;
+    animation: pan-diagonal 4s linear infinite reverse;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Diagonals — thin lines on purple */
+  .animate-diagonals {
+    position: relative;
+    overflow: hidden;
+    background-color: #2d1b69;
+  }
+  .animate-diagonals::before {
+    content: "";
+    position: absolute;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(255,255,255,0.07) 18px,
+      rgba(255,255,255,0.07) 20px
+    );
+    animation: pan-diagonal 3s linear infinite;
+    pointer-events: none;
+    z-index: 0;
   }
 }

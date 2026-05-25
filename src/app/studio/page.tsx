@@ -48,9 +48,11 @@ const BACKGROUNDS = [
   
   // Animated
   "bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-gradient",
-  "animate-stripes", // Moving warning stripes
-  "animate-blueprint", // Panning vibrant blue graph paper
-  "animate-dots", // Panning brutalist orange dots
+  "animate-stripes", // Aurora flow
+  "animate-blueprint", // Panning blue graph paper
+  "animate-checker", // Panning dark checkerboard
+  "animate-crosses", // Panning mint grid on dark
+  "animate-diagonals", // Panning diagonal lines on purple
 ];
 
 
@@ -129,6 +131,20 @@ export default function StudioPage() {
     }));
   }, [code, filename, theme, bgGradient, padding, showWindowControls, borderThickness, shadowDistance, borderColor, shadowColor, isLoaded]);
 
+  const handleReset = () => {
+    setCode("");
+    setFilename("");
+    setTheme("github-dark");
+    setBgGradient(BACKGROUNDS[0]);
+    setPadding(64);
+    setShowWindowControls(true);
+    setBorderThickness(8);
+    setShadowDistance(24);
+    setBorderColor("#050505");
+    setShadowColor("#050505");
+    localStorage.removeItem("snipcast_prefs");
+  };
+
   const exportRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -166,17 +182,17 @@ export default function StudioPage() {
             <label className="block text-sm font-black uppercase tracking-widest mb-4">Background</label>
             <div className="grid grid-cols-4 gap-4">
               {BACKGROUNDS.map((bg, i) => (
-                <button
-                  key={i}
-                  onClick={() => setBgGradient(bg)}
-                  className={`relative w-full aspect-square border-4 ${bgGradient === bg ? 'border-[#FF3300] scale-110 shadow-[4px_4px_0px_#FF3300]' : 'border-[#050505] shadow-[4px_4px_0px_#050505] hover:scale-105'} transition-all ${bg}`}
-                >
+                <div key={i} className="relative">
+                  <button
+                    onClick={() => setBgGradient(bg)}
+                    className={`relative w-full aspect-square border-4 ${bgGradient === bg ? 'border-[#FF3300] scale-110 shadow-[4px_4px_0px_#FF3300]' : 'border-[#050505] shadow-[4px_4px_0px_#050505] hover:scale-105'} transition-all ${bg}`}
+                  />
                   {bg.includes('animate-') && (
-                    <div className="absolute -top-2 -right-2 bg-[#FF3300] border-2 border-[#050505] text-[#050505] font-black text-[9px] px-1 shadow-[2px_2px_0px_#050505] uppercase tracking-tighter rotate-12 z-10 pointer-events-none">
+                    <div className="absolute -top-2 -right-2 bg-[#FF3300] border-2 border-[#050505] text-[#050505] font-black text-[9px] px-1 shadow-[2px_2px_0px_#050505] uppercase tracking-tighter rotate-12 z-20 pointer-events-none">
                       Anim
                     </div>
                   )}
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -253,15 +269,25 @@ export default function StudioPage() {
               <div className={`w-4 h-4 bg-[#050505] absolute top-1 transition-all ${showWindowControls ? 'left-8' : 'left-1'}`} />
             </button>
           </div>
-
-          <hr className="border-2 border-[#050505]" />
-
-          <ExportPanel targetRef={exportRef} />
         </div>
       </aside>
 
       {/* CANVAS */}
-      <main className="flex-1 h-screen overflow-auto bg-[#EBEBEB] relative flex flex-col p-4 md:p-12">
+      <main className="flex-1 h-screen overflow-auto bg-[#EBEBEB] relative flex flex-col">
+        {/* Top Toolbar — Export & Share */}
+        <div className="sticky top-0 z-30 flex items-center justify-between px-4 md:px-8 py-3 bg-[#EBEBEB]/80 backdrop-blur-md border-b-4 border-[#050505]/10">
+          <button
+            onClick={handleReset}
+            title="Reset to defaults"
+            className="flex items-center gap-2 px-3 py-2 bg-[#FAFAFA] border-3 border-[#050505] font-bold text-xs uppercase cursor-pointer hover:bg-[#FF3300] hover:text-white transition-all shadow-[3px_3px_0px_#050505] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Reset
+          </button>
+          <ExportPanel targetRef={exportRef} isAnimatedBg={bgGradient.includes('animate-')} />
+        </div>
+
+        <div className="flex-1 p-4 md:p-12 flex flex-col">
         {/* Checkerboard Pattern */}
         <div 
           className="fixed inset-0 opacity-[0.03] pointer-events-none" 
@@ -306,6 +332,7 @@ export default function StudioPage() {
             </div>
           </div>
           </div>
+        </div>
         </div>
       </main>
     </div>

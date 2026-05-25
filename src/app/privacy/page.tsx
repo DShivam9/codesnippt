@@ -1,5 +1,15 @@
 import React from "react";
 import TransitionLink from "@/components/TransitionLink";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "SNIPCAST Privacy Policy — Your code never leaves your browser. Learn how SNIPCAST protects your data with a 100% client-side code snippet image generator.",
+  alternates: {
+    canonical: "https://snipcast.dev/privacy",
+  },
+};
 
 export default function PrivacyPolicy() {
   return (
