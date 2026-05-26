@@ -99,6 +99,7 @@ export default function StudioPage() {
   const [borderColor, setBorderColor] = useState("#050505");
   const [shadowColor, setShadowColor] = useState("#050505");
   const [isLoaded, setIsLoaded] = useState(false);
+  const [backHref, setBackHref] = useState("/");
 
   useEffect(() => {
     // Load from localStorage on mount
@@ -120,6 +121,14 @@ export default function StudioPage() {
         console.error("Failed to load preferences", e);
       }
     }
+    
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("from") === "themes") {
+        setBackHref("/themes");
+      }
+    }
+    
     setIsLoaded(true);
   }, []);
 
@@ -156,7 +165,7 @@ export default function StudioPage() {
         {/* Header */}
         <div className="p-6 border-b-8 border-[#050505] bg-[#050505] text-[#FAFAFA] flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-3">
-            <TransitionLink href="/" variant="back" className="hover:text-[#FF3300] transition-colors">
+            <TransitionLink href={backHref} variant="back" className="hover:text-[#FF3300] transition-colors">
               <ArrowLeft size={28} strokeWidth={3} />
             </TransitionLink>
             <h1 className="text-3xl font-black uppercase tracking-tighter">Studio</h1>

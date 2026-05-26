@@ -1,5 +1,6 @@
 import React from "react";
 import TransitionLink from "@/components/TransitionLink";
+import LegalLayout from "@/components/LegalLayout";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,17 +15,18 @@ export const metadata: Metadata = {
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen bg-[#FAFAFA] text-[#000] selection:bg-[#FF9F0A] selection:text-[#000] font-sans">
-      {/* Brutalist Simple Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-4 border-b-4 border-[#000] bg-[#FAFAFA]">
-        <TransitionLink href="/" variant="back" className="font-black text-2xl uppercase tracking-tighter hover:text-[#FF9F0A] transition-colors">
-          SNIPCAST
-        </TransitionLink>
-        <TransitionLink href="/" variant="back" className="font-black uppercase tracking-widest text-sm hover:underline underline-offset-4">
-          ← Back to Home
-        </TransitionLink>
-      </nav>
+      <LegalLayout>
+        {/* Brutalist Simple Nav */}
+        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-8 py-4 border-b-4 border-[#000] bg-[#FAFAFA]">
+          <TransitionLink href="/" variant="back" className="font-black text-2xl uppercase tracking-tighter hover:text-[#FF9F0A] transition-colors">
+            SNIPCAST
+          </TransitionLink>
+          <TransitionLink href="/" variant="back" className="font-black uppercase tracking-widest text-sm hover:underline underline-offset-4">
+            ← Back to Home
+          </TransitionLink>
+        </nav>
 
-      <article className="max-w-4xl mx-auto px-6 pt-32 pb-24">
+        <article className="max-w-4xl mx-auto px-6 pt-32 pb-24">
         <h1 className="text-[clamp(3rem,8vw,6rem)] leading-[0.85] font-black uppercase tracking-tighter mb-12">
           PRIVACY<br/>POLICY.
         </h1>
@@ -44,6 +46,7 @@ export default function PrivacyPolicy() {
           <p>If you have any questions about this microscopic privacy policy, you can reach out to us on Twitter or GitHub.</p>
         </div>
       </article>
+      </LegalLayout>
     </main>
   );
 }

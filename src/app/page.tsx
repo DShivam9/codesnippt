@@ -61,10 +61,11 @@ const obsidianCode = (
   </div>
 );
 
-function BrutalistButton({ children, className, href }: any) {
+function BrutalistButton({ children, className, href, variant = "studio" }: any) {
   return (
     <TransitionLink 
       href={href} 
+      variant={variant}
       className={`inline-block border-4 border-foreground bg-background text-foreground uppercase font-black tracking-widest px-8 py-5 transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_#FF9F0A] active:translate-x-0 active:translate-y-0 active:shadow-none ${className}`}
     >
       {children}
@@ -352,11 +353,11 @@ export default function LandingPage() {
           <div className="flex-1 w-full scroll-reveal">
             <h2 className="text-[clamp(4rem,8vw,8rem)] font-black tracking-tighter uppercase mb-12 leading-[0.85] text-[#FAFAFA]">THEME<br/>ARCH.</h2>
             <p ref={textRevealRef} className="text-3xl md:text-5xl font-black mb-12 uppercase leading-tight text-[#FAFAFA]">
-              {("Start with the best. Our signature Obsidian theme provides maximum legibility and violent aesthetic impact.").split("").map((char, idx) => (
+              {("UNLEASH YOUR CREATIVITY. EXPLORE OUR CURATED PRESETS OR FORGE YOUR OWN COMBINATION OF THEMES AND BACKGROUNDS FOR MAXIMUM AESTHETIC IMPACT.").split("").map((char, idx) => (
                 <span key={idx} className="reveal-char">{char}</span>
               ))}
             </p>
-            <BrutalistButton href="/studio" className="bg-[#FAFAFA] text-[#000] shadow-[8px_8px_0px_#FF9F0A]">
+            <BrutalistButton href="/themes" variant="themes" className="bg-[#FAFAFA] text-[#000] shadow-[8px_8px_0px_#FF9F0A]">
               EXPLORE THEMES
             </BrutalistButton>
           </div>
