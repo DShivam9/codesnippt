@@ -324,14 +324,14 @@ export default function LandingPage() {
         <div className="hero-bg-marquees absolute inset-0 w-full h-full pointer-events-none">
           <div className="absolute top-[16%] left-0 w-full overflow-hidden opacity-[0.08]">
             <div className="hero-marquee flex whitespace-nowrap w-max">
-              <h1 className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16">SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; </h1>
-              <h1 className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16">SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; </h1>
+              <span aria-hidden="true" className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 block">SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; </span>
+              <span aria-hidden="true" className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 block">SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; SNIPCAST &mdash; </span>
             </div>
           </div>
           <div className="absolute bottom-[8%] left-0 w-full overflow-hidden opacity-[0.12]">
             <div className="hero-marquee-fast flex whitespace-nowrap w-max">
-              <h1 className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 text-transparent [-webkit-text-stroke:4px_#FAFAFA]">CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; </h1>
-              <h1 className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 text-transparent [-webkit-text-stroke:4px_#FAFAFA]">CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; </h1>
+              <span aria-hidden="true" className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 text-transparent [-webkit-text-stroke:4px_#FAFAFA] block">CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; </span>
+              <span aria-hidden="true" className="text-[15vw] leading-none font-black uppercase tracking-tighter pr-16 text-transparent [-webkit-text-stroke:4px_#FAFAFA] block">CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; CODE TO IMAGE &mdash; </span>
             </div>
           </div>
         </div>
@@ -605,12 +605,12 @@ export default function LandingPage() {
           </div>
           <div className="w-full overflow-hidden flex whitespace-nowrap">
             <div className="footer-marquee flex w-max mt-4">
-              <h1 className="text-[14vw] leading-[0.75] font-black tracking-tighter uppercase text-[#FAFAFA] pr-16 select-none">
+              <span aria-hidden="true" className="text-[14vw] leading-[0.75] font-black tracking-tighter uppercase text-[#FAFAFA] pr-16 select-none block">
                 SNIPCAST &mdash; SNIPCAST &mdash; 
-              </h1>
-              <h1 className="text-[14vw] leading-[0.75] font-black tracking-tighter uppercase text-[#FAFAFA] pr-16 select-none">
+              </span>
+              <span aria-hidden="true" className="text-[14vw] leading-[0.75] font-black tracking-tighter uppercase text-[#FAFAFA] pr-16 select-none block">
                 SNIPCAST &mdash; SNIPCAST &mdash; 
-              </h1>
+              </span>
             </div>
           </div>
         </div>
