@@ -2,6 +2,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import InteractiveMascot from "@/components/InteractiveMascot";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistMono = Geist_Mono({
   variable: "--font-mono",
@@ -323,6 +324,7 @@ export default function RootLayout({
       >
         <InteractiveMascot />
         {children}
+        <Analytics />
       </body>
     </html>
   );

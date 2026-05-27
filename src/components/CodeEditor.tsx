@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import hljs from "highlight.js";
 
 interface CodeEditorProps {
   code: string;
@@ -25,6 +24,8 @@ export default function CodeEditor({ code, setCode, filename, setFilename, theme
         let lang = "javascript"; // fallback
         if (code.trim() !== "") {
            try {
+             // Lazy load highlight.js so it doesn't block initial page load
+             const hljs = (await import("highlight.js")).default;
              lang = hljs.highlightAuto(code).language || "javascript";
            } catch(e) {}
         }

@@ -14,7 +14,8 @@ export default function InteractiveMascot() {
   
   const [isHovered, setIsHovered] = useState(false);
   const [currentEmotion, setCurrentEmotion] = useState<Emotion>('idle');
-  const [mouseIdleTimer, setMouseIdleTimer] = useState<NodeJS.Timeout | null>(null);
+  const mouseIdleTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isThrottledRef = useRef(false);
 
   // For aggressive mouse tracking
   const mouseHistoryRef = useRef<{x: number, y: number, time: number}[]>([]);
@@ -27,20 +28,24 @@ export default function InteractiveMascot() {
   useEffect(() => {
     // Eye tracking logic
     const handleMouseMove = (e: MouseEvent) => {
-      // Wake up if asleep
-      if (currentEmotion === 'sleepy') {
-        setCurrentEmotion('idle');
-        resetMascot();
-      }
-
-      // Reset sleep timer
-      if (mouseIdleTimer) clearTimeout(mouseIdleTimer);
-      const timer = setTimeout(() => {
-        if (!isHovered && currentEmotion === 'idle') {
-          playEmotion('sleepy');
+      if (isThrottledRef.current) return;
+      isThrottledRef.current = true;
+      requestAnimationFrame(() => {
+        isThrottledRef.current = false;
+        
+        // Wake up if asleep
+        if (currentEmotion === 'sleepy') {
+          setCurrentEmotion('idle');
+          resetMascot();
         }
-      }, 10000); 
-      setMouseIdleTimer(timer);
+
+        // Reset sleep timer
+        if (mouseIdleTimerRef.current) clearTimeout(mouseIdleTimerRef.current);
+        mouseIdleTimerRef.current = setTimeout(() => {
+          if (!isHovered && currentEmotion === 'idle') {
+            playEmotion('sleepy');
+          }
+        }, 10000); 
 
       // Aggressive mouse tracking (Shaking)
       const now = Date.now();
@@ -86,14 +91,15 @@ export default function InteractiveMascot() {
         ease: "power2.out",
         overwrite: "auto"
       });
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      if (mouseIdleTimer) clearTimeout(mouseIdleTimer);
+      if (mouseIdleTimerRef.current) clearTimeout(mouseIdleTimerRef.current);
     };
-  }, [isHovered, currentEmotion, mouseIdleTimer]);
+  }, [isHovered, currentEmotion]);
 
   // Global Event Listener for actions elsewhere in the app
   useEffect(() => {

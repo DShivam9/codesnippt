@@ -131,6 +131,15 @@ function BrutalistButton({ children, className, href, variant = "studio" }: any)
   );
 }
 
+const faqs = [
+  { q: "Is this really free?", a: "Yes, 100%. No paywalls, no subscriptions. We believe in open tools for developers. Just jump into the studio and start rendering." },
+  { q: "What languages are supported?", a: "We support syntax highlighting for pretty much everything. JavaScript, TypeScript, Python, Rust, Go, C++, and dozens more. If you can code in it, we can highlight it." },
+  { q: "Can I use the images commercially?", a: "Absolutely. Generate snippets for your blog, Twitter, client presentations, or commercial projects. The renders are completely yours." },
+  { q: "How do I export high-res images?", a: "In the studio, you can export your snippets as high-resolution PNGs or vector SVGs with a single click. No watermarks." },
+  { q: "Are my snippets saved on your server?", a: "Never. Everything is rendered entirely in your browser. We don't have a database, and your code never leaves your device." },
+  { q: "Do you support custom themes?", a: "We offer 18+ gorgeous syntax themes built-in, ranging from brutalist high-contrast to smooth synthwave gradients. Total creative control." }
+];
+
 export default function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const bentoRef = useRef<HTMLDivElement>(null);
@@ -502,14 +511,7 @@ export default function LandingPage() {
             FREQUENTLY<br/>ASKED.
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full items-start">
-            {[
-              { q: "Is this really free?", a: "Yes, 100%. No paywalls, no subscriptions. We believe in open tools for developers. Just jump into the studio and start rendering." },
-              { q: "What languages are supported?", a: "We support syntax highlighting for pretty much everything. JavaScript, TypeScript, Python, Rust, Go, C++, and dozens more. If you can code in it, we can highlight it." },
-              { q: "Can I use the images commercially?", a: "Absolutely. Generate snippets for your blog, Twitter, client presentations, or commercial projects. The renders are completely yours." },
-              { q: "How do I export high-res images?", a: "In the studio, you can export your snippets as high-resolution PNGs or vector SVGs with a single click. No watermarks." },
-              { q: "Are my snippets saved on your server?", a: "Never. Everything is rendered entirely in your browser. We don't have a database, and your code never leaves your device." },
-              { q: "Do you support custom themes?", a: "We offer 18+ gorgeous syntax themes built-in, ranging from brutalist high-contrast to smooth synthwave gradients. Total creative control." }
-            ].map((faq, idx) => (
+            {faqs.map((faq, idx) => (
               <details name="faq-accordion" key={idx} className="faq-item group border-4 border-[#FAFAFA] bg-[#050505] p-6 md:p-8 shadow-[8px_8px_0px_#FF9F0A] hover:-translate-y-2 hover:-translate-x-2 hover:rotate-1 hover:shadow-[16px_16px_0px_#FF9F0A] open:bg-[#FF9F0A] open:border-[#000] open:-translate-y-2 open:-translate-x-2 open:shadow-[16px_16px_0px_#FAFAFA] transition-all duration-300">
                 <summary className="font-black text-xl md:text-2xl uppercase tracking-widest cursor-pointer list-none flex justify-between items-start gap-4 group-open:text-[#000] text-[#FAFAFA] transition-colors">
                   <span className="group-hover:text-[#FF9F0A] group-open:group-hover:text-[#000] transition-colors">{faq.q}</span>
