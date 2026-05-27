@@ -98,6 +98,7 @@ export default function StudioPage() {
   const [shadowDistance, setShadowDistance] = useState(24);
   const [borderColor, setBorderColor] = useState("#050505");
   const [shadowColor, setShadowColor] = useState("#050505");
+  const [editorBg, setEditorBg] = useState("#050505");
   const [isLoaded, setIsLoaded] = useState(false);
   const [backHref, setBackHref] = useState("/");
 
@@ -110,7 +111,10 @@ export default function StudioPage() {
         if (p.code !== undefined) setCode(p.code);
         if (p.filename !== undefined) setFilename(p.filename);
         if (p.theme !== undefined) setTheme(p.theme);
+        // ThemesPage saves background as bgClass, StudioPage uses bgGradient
         if (p.bgGradient !== undefined) setBgGradient(p.bgGradient);
+        else if (p.bgClass !== undefined) setBgGradient(p.bgClass);
+        if (p.editorBg !== undefined) setEditorBg(p.editorBg);
         if (p.padding !== undefined) setPadding(p.padding);
         if (p.showWindowControls !== undefined) setShowWindowControls(p.showWindowControls);
         if (p.borderThickness !== undefined) setBorderThickness(p.borderThickness);
@@ -136,9 +140,9 @@ export default function StudioPage() {
     // Save to localStorage on change
     if (!isLoaded) return;
     localStorage.setItem("snipcast_prefs", JSON.stringify({
-      code, filename, theme, bgGradient, padding, showWindowControls, borderThickness, shadowDistance, borderColor, shadowColor
+      code, filename, theme, bgGradient, padding, showWindowControls, borderThickness, shadowDistance, borderColor, shadowColor, editorBg
     }));
-  }, [code, filename, theme, bgGradient, padding, showWindowControls, borderThickness, shadowDistance, borderColor, shadowColor, isLoaded]);
+  }, [code, filename, theme, bgGradient, padding, showWindowControls, borderThickness, shadowDistance, borderColor, shadowColor, editorBg, isLoaded]);
 
   const handleReset = () => {
     setCode("");
@@ -151,6 +155,7 @@ export default function StudioPage() {
     setShadowDistance(24);
     setBorderColor("#050505");
     setShadowColor("#050505");
+    setEditorBg("#050505");
     localStorage.removeItem("snipcast_prefs");
   };
 
@@ -259,11 +264,20 @@ export default function StudioPage() {
                />
             </div>
             <div>
-               <label className="block text-sm font-black uppercase tracking-widest mb-4">Color</label>
+               <label className="block text-sm font-black uppercase tracking-widest mb-4">Shadow Color</label>
                <input 
                  type="color" 
                  value={shadowColor}
                  onChange={(e) => setShadowColor(e.target.value)}
+                 className="w-full h-8 cursor-pointer p-0 border-0 bg-transparent mb-2"
+               />
+            </div>
+            <div>
+               <label className="block text-sm font-black uppercase tracking-widest mb-4">Editor BG</label>
+               <input 
+                 type="color" 
+                 value={editorBg}
+                 onChange={(e) => setEditorBg(e.target.value)}
                  className="w-full h-8 cursor-pointer p-0 border-0 bg-transparent"
                />
             </div>
@@ -337,6 +351,7 @@ export default function StudioPage() {
                 setFilename={setFilename}
                 theme={theme} 
                 showWindowControls={showWindowControls}
+                editorBg={editorBg}
               />
             </div>
           </div>

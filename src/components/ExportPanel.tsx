@@ -38,8 +38,10 @@ export default function ExportPanel({ targetRef, isAnimatedBg = false }: ExportP
       link.download = "snipcast-snippet.png";
       link.href = dataUrl;
       link.click();
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'happy' }));
     } catch (err) {
       console.error("Failed to export PNG:", err);
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'confused' }));
     }
   }, [targetRef]);
 
@@ -52,8 +54,10 @@ export default function ExportPanel({ targetRef, isAnimatedBg = false }: ExportP
       link.download = "snipcast-snippet.svg";
       link.href = dataUrl;
       link.click();
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'happy' }));
     } catch (err) {
       console.error("Failed to export SVG:", err);
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'confused' }));
     }
   }, [targetRef]);
 
@@ -69,10 +73,12 @@ export default function ExportPanel({ targetRef, isAnimatedBg = false }: ExportP
       ]);
 
       setCopyState("success");
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'happy' }));
       setTimeout(() => setCopyState("idle"), 2000);
     } catch (err) {
       console.error("Failed to copy to clipboard:", err);
       setCopyState("error");
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'confused' }));
       setTimeout(() => setCopyState("idle"), 2000);
     }
   }, [generateBlob]);
@@ -95,12 +101,14 @@ export default function ExportPanel({ targetRef, isAnimatedBg = false }: ExportP
           files: [file],
         });
         setShareState("success");
+        window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'happy' }));
       } else {
         // Fallback: copy to clipboard if Web Share not supported
         await navigator.clipboard.write([
           new ClipboardItem({ "image/png": blob }),
         ]);
         setShareState("success");
+        window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'happy' }));
       }
       setTimeout(() => setShareState("idle"), 2000);
     } catch (err: unknown) {
@@ -110,6 +118,7 @@ export default function ExportPanel({ targetRef, isAnimatedBg = false }: ExportP
       }
       console.error("Failed to share:", err);
       setShareState("error");
+      window.dispatchEvent(new CustomEvent('mascot-action', { detail: 'confused' }));
       setTimeout(() => setShareState("idle"), 2000);
     }
   }, [generateBlob]);

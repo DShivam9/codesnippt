@@ -6,7 +6,13 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SiJavascript, SiTypescript, SiPython, SiRust, SiGo, SiCplusplus, SiSwift, SiKotlin, SiRuby, SiPhp, SiGithub } from "react-icons/si";
+import { 
+  SiJavascript, SiTypescript, SiPython, SiRust, SiGo, SiCplusplus, SiSwift, SiKotlin, SiRuby, SiPhp, SiGithub,
+  SiHtml5, SiCss, SiSass, SiMarkdown, SiJson, SiYaml, SiGnubash, SiGraphql, SiDocker,
+  SiScala, SiHaskell, SiElixir, SiClojure, SiLua, SiR, SiDart, SiSolidity,
+  SiAssemblyscript, SiVuedotjs, SiReact, SiSvelte, SiAngular, SiTailwindcss, SiPrisma, SiAstro,
+  SiToml, SiXml, SiC, SiNim, SiZig, SiFsharp
+} from "react-icons/si";
 import PixelTransition from "../components/pixel-transition";
 import TransitionLink from "@/components/TransitionLink";
 
@@ -25,7 +31,59 @@ const languageLogos = [
   { node: <SiKotlin color="#7F52FF" />, title: "Kotlin" },
   { node: <SiRuby color="#CC342D" />, title: "Ruby" },
   { node: <SiPhp color="#777BB4" />, title: "PHP" },
+  { node: <SiHtml5 color="#E34F26" />, title: "HTML5" },
+  { node: <SiCss color="#1572B6" />, title: "CSS" },
+  { node: <SiSass color="#CC6699" />, title: "Sass" },
+  { node: <SiMarkdown color="#000000" />, title: "Markdown" },
+  { node: <SiJson color="#000000" />, title: "JSON" },
+  { node: <SiYaml color="#CB171E" />, title: "YAML" },
+  { node: <SiGnubash color="#4EAA25" />, title: "Bash" },
+  { node: <SiGraphql color="#E10098" />, title: "GraphQL" },
+  { node: <SiDocker color="#2496ED" />, title: "Docker" },
+  { node: <SiScala color="#DC322F" />, title: "Scala" },
+  { node: <SiHaskell color="#5D4F85" />, title: "Haskell" },
+  { node: <SiElixir color="#4B275F" />, title: "Elixir" },
+  { node: <SiClojure color="#5881D8" />, title: "Clojure" },
+  { node: <SiLua color="#2C2D72" />, title: "Lua" },
+  { node: <SiR color="#276DC3" />, title: "R" },
+  { node: <SiDart color="#0175C2" />, title: "Dart" },
+  { node: <SiSolidity color="#363636" />, title: "Solidity" },
+  { node: <SiAssemblyscript color="#000000" />, title: "AssemblyScript" },
+  { node: <SiVuedotjs color="#4FC08D" />, title: "Vue" },
+  { node: <SiReact color="#61DAFB" />, title: "React" },
+  { node: <SiSvelte color="#FF3E00" />, title: "Svelte" },
+  { node: <SiAngular color="#DD0031" />, title: "Angular" },
+  { node: <SiTailwindcss color="#06B6D4" />, title: "Tailwind" },
+  { node: <SiPrisma color="#2D3748" />, title: "Prisma" },
+  { node: <SiAstro color="#BC52EE" />, title: "Astro" },
+  { node: <SiToml color="#9C4221" />, title: "TOML" },
+  { node: <SiXml color="#00608C" />, title: "XML" },
+  { node: <SiC color="#A8B9CC" />, title: "C" },
+  { node: <SiNim color="#FFE953" />, title: "Nim" },
+  { node: <SiZig color="#F7A41D" />, title: "Zig" },
+  { node: <SiFsharp color="#378BBA" />, title: "F#" }
 ];
+
+const LanguageMarqueeRow = ({ items, direction = "left" }: { items: typeof languageLogos, direction?: "left" | "right" }) => {
+  return (
+    <div className="w-full overflow-hidden flex whitespace-nowrap group/marquee">
+      <div className={`flex w-max group-hover/marquee:[animation-play-state:paused] ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}>
+        {[...Array(2)].map((_, i) => (
+          <div key={i} className="flex gap-4 px-2 py-2">
+            {items.map((logo, idx) => (
+              <div key={idx} className="shrink-0 w-24 md:w-28 flex flex-col items-center justify-center p-3 border-2 border-[#000] bg-[#FAFAFA] shadow-[4px_4px_0px_#000] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[6px_6px_0px_#000]">
+                <div className="text-3xl md:text-4xl mb-2 grayscale hover:grayscale-0 transition-all duration-300">
+                  {logo.node}
+                </div>
+                <span className="font-black uppercase text-[10px] tracking-widest text-[#000] truncate w-full text-center">{logo.title}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const rawCode = (
   <div className="w-full h-full bg-[#1E1E2E] p-8 flex flex-col justify-center border-4 border-foreground">
@@ -185,6 +243,23 @@ export default function LandingPage() {
         scrub: 1
       }
     });
+
+    // FAQ Stagger
+    gsap.fromTo(".faq-item",
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "back.out(1.5)",
+        scrollTrigger: {
+          trigger: "#faq",
+          start: "top 60%",
+          toggleActions: "play none none none"
+        }
+      }
+    );
 
     // Generic Scroll Reveal for headings and footer
     gsap.utils.toArray<HTMLElement>(".scroll-reveal").forEach(el => {
@@ -383,20 +458,40 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* INFINITE MARQUEE & LANGUAGES */}
-      <section aria-label="Supported programming languages" className="marquee-section relative py-32 border-t-8 border-b-8 border-[#FAFAFA] bg-[#FF9F0A] overflow-hidden flex flex-col justify-center">
-        <div className="massive-marquee absolute inset-0 flex items-center w-[200vw]">
-          <span className="text-[25vw] font-black uppercase whitespace-nowrap tracking-tighter text-[#000] opacity-20 mix-blend-overlay">
-            EVERY LANGUAGE EVERY LANGUAGE EVERY LANGUAGE EVERY LANGUAGE
+      {/* INFINITE MARQUEE & LANGUAGES - Improved */}
+      <section aria-label="Supported programming languages" className="marquee-section relative py-24 md:py-40 border-t-8 border-b-8 border-[#FAFAFA] bg-[#FF9F0A] overflow-hidden">
+        {/* Background Marquee */}
+        <div className="massive-marquee absolute inset-0 flex items-center w-[300vw] pointer-events-none">
+          <span className="text-[25vw] font-black uppercase whitespace-nowrap tracking-tighter text-[#000] opacity-10 mix-blend-overlay">
+            NO CONFIGURATION. NO CONFIGURATION. NO CONFIGURATION.
           </span>
         </div>
-        <div className="scroll-reveal relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-8">
-          {languageLogos.map((logo, idx) => (
-            <div key={idx} className="flex flex-col items-center justify-center p-8 border-4 border-[#000] bg-[#FAFAFA] shadow-[8px_8px_0px_#000] hover:-translate-y-2 hover:shadow-[12px_12px_0px_#000] transition-all duration-300">
-              <div className="text-6xl mb-4 grayscale hover:grayscale-0 transition-all duration-300">{logo.node}</div>
-              <span className="font-black uppercase text-sm tracking-widest text-[#000]">{logo.title}</span>
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 flex flex-col xl:flex-row gap-16 xl:gap-24 items-center">
+          
+          {/* Context / Copy */}
+          <div className="flex-1 text-left scroll-reveal">
+            <div className="inline-block bg-[#000] text-[#FAFAFA] px-4 py-2 font-black tracking-widest uppercase mb-8 border-4 border-[#FAFAFA] shadow-[8px_8px_0px_#FAFAFA] transform -rotate-2">
+              Auto-detecting Syntax
             </div>
-          ))}
+            <h2 className="text-[clamp(3.5rem,8vw,6rem)] leading-[0.85] font-black uppercase tracking-tighter text-[#000] mb-8">
+              FLUENT IN<br/>EVERYTHING.
+            </h2>
+            <p className="text-xl md:text-2xl font-bold uppercase tracking-tight text-[#000] max-w-xl mb-12 border-l-8 border-[#000] pl-6 py-2">
+              Powered by Shiki. We support over 50+ languages out of the box. Just paste your code, and we'll handle the rest. No configuration required.
+            </p>
+            <BrutalistButton href="/studio" className="bg-[#000] text-[#FAFAFA] border-[#000] !shadow-[8px_8px_0px_#FAFAFA] hover:!shadow-[12px_12px_0px_#FAFAFA] hover:bg-[#111]">
+              TRY IT YOURSELF
+            </BrutalistButton>
+          </div>
+
+          {/* Language Marquees */}
+          <div className="flex-1 min-w-0 w-full flex flex-col gap-4 scroll-reveal relative" style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}>
+            <LanguageMarqueeRow items={languageLogos.slice(0, 14)} direction="left" />
+            <LanguageMarqueeRow items={languageLogos.slice(14, 28)} direction="right" />
+            <LanguageMarqueeRow items={languageLogos.slice(28)} direction="left" />
+          </div>
+
         </div>
       </section>
 
@@ -406,34 +501,25 @@ export default function LandingPage() {
           <h2 className="text-[clamp(3rem,8vw,6rem)] font-black uppercase tracking-tighter text-[#FAFAFA] mb-16 leading-[0.85]">
             FREQUENTLY<br/>ASKED.
           </h2>
-          <div className="flex flex-col gap-8">
-            <details className="group border-4 border-[#FAFAFA] bg-[#050505] p-6 md:p-8 shadow-[8px_8px_0px_#FF9F0A] open:bg-[#FF9F0A] open:border-[#000] open:shadow-[12px_12px_0px_#FAFAFA] transition-all duration-300">
-              <summary className="font-black text-xl md:text-3xl uppercase tracking-widest cursor-pointer list-none flex justify-between items-center group-open:text-[#000] text-[#FAFAFA]">
-                Is this really free?
-                <span className="text-[#FF9F0A] group-open:text-[#000] group-open:rotate-45 transition-transform duration-300 text-4xl leading-none">+</span>
-              </summary>
-              <div className="mt-8 text-lg md:text-xl font-bold font-mono text-[#000]">
-                Yes, 100%. No paywalls, no subscriptions. We believe in open tools for developers. Just jump into the studio and start rendering.
-              </div>
-            </details>
-            <details className="group border-4 border-[#FAFAFA] bg-[#050505] p-6 md:p-8 shadow-[8px_8px_0px_#FF9F0A] open:bg-[#FF9F0A] open:border-[#000] open:shadow-[12px_12px_0px_#FAFAFA] transition-all duration-300">
-              <summary className="font-black text-xl md:text-3xl uppercase tracking-widest cursor-pointer list-none flex justify-between items-center group-open:text-[#000] text-[#FAFAFA]">
-                What languages are supported?
-                <span className="text-[#FF9F0A] group-open:text-[#000] group-open:rotate-45 transition-transform duration-300 text-4xl leading-none">+</span>
-              </summary>
-              <div className="mt-8 text-lg md:text-xl font-bold font-mono text-[#000]">
-                We support syntax highlighting for pretty much everything. JavaScript, TypeScript, Python, Rust, Go, C++, and dozens more. If you can code in it, we can highlight it.
-              </div>
-            </details>
-            <details className="group border-4 border-[#FAFAFA] bg-[#050505] p-6 md:p-8 shadow-[8px_8px_0px_#FF9F0A] open:bg-[#FF9F0A] open:border-[#000] open:shadow-[12px_12px_0px_#FAFAFA] transition-all duration-300">
-              <summary className="font-black text-xl md:text-3xl uppercase tracking-widest cursor-pointer list-none flex justify-between items-center group-open:text-[#000] text-[#FAFAFA]">
-                Can I use the images commercially?
-                <span className="text-[#FF9F0A] group-open:text-[#000] group-open:rotate-45 transition-transform duration-300 text-4xl leading-none">+</span>
-              </summary>
-              <div className="mt-8 text-lg md:text-xl font-bold font-mono text-[#000]">
-                Absolutely. Generate snippets for your blog, Twitter, client presentations, or commercial projects. The renders are completely yours.
-              </div>
-            </details>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full items-start">
+            {[
+              { q: "Is this really free?", a: "Yes, 100%. No paywalls, no subscriptions. We believe in open tools for developers. Just jump into the studio and start rendering." },
+              { q: "What languages are supported?", a: "We support syntax highlighting for pretty much everything. JavaScript, TypeScript, Python, Rust, Go, C++, and dozens more. If you can code in it, we can highlight it." },
+              { q: "Can I use the images commercially?", a: "Absolutely. Generate snippets for your blog, Twitter, client presentations, or commercial projects. The renders are completely yours." },
+              { q: "How do I export high-res images?", a: "In the studio, you can export your snippets as high-resolution PNGs or vector SVGs with a single click. No watermarks." },
+              { q: "Are my snippets saved on your server?", a: "Never. Everything is rendered entirely in your browser. We don't have a database, and your code never leaves your device." },
+              { q: "Do you support custom themes?", a: "We offer 18+ gorgeous syntax themes built-in, ranging from brutalist high-contrast to smooth synthwave gradients. Total creative control." }
+            ].map((faq, idx) => (
+              <details name="faq-accordion" key={idx} className="faq-item group border-4 border-[#FAFAFA] bg-[#050505] p-6 md:p-8 shadow-[8px_8px_0px_#FF9F0A] hover:-translate-y-2 hover:-translate-x-2 hover:rotate-1 hover:shadow-[16px_16px_0px_#FF9F0A] open:bg-[#FF9F0A] open:border-[#000] open:-translate-y-2 open:-translate-x-2 open:shadow-[16px_16px_0px_#FAFAFA] transition-all duration-300">
+                <summary className="font-black text-xl md:text-2xl uppercase tracking-widest cursor-pointer list-none flex justify-between items-start gap-4 group-open:text-[#000] text-[#FAFAFA] transition-colors">
+                  <span className="group-hover:text-[#FF9F0A] group-open:group-hover:text-[#000] transition-colors">{faq.q}</span>
+                  <span className="text-[#FF9F0A] group-hover:rotate-90 group-open:text-[#000] group-open:rotate-45 group-open:group-hover:rotate-[135deg] transition-all duration-500 text-3xl leading-none mt-1">+</span>
+                </summary>
+                <div className="mt-8 text-base md:text-lg font-bold font-mono text-[#000] bg-[#FAFAFA] p-5 border-4 border-[#000] shadow-[4px_4px_0px_#000] animate-in fade-in slide-in-from-top-4 duration-500">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

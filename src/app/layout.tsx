@@ -1,6 +1,7 @@
 import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import InteractiveMascot from "@/components/InteractiveMascot";
 
 const geistMono = Geist_Mono({
   variable: "--font-mono",
@@ -320,6 +321,7 @@ export default function RootLayout({
       <body
         className={`${interFont.variable} ${geistMono.variable} font-sans antialiased selection:bg-primary selection:text-background`}
       >
+        <InteractiveMascot />
         {children}
       </body>
     </html>

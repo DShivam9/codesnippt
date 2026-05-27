@@ -11,9 +11,10 @@ interface CodeEditorProps {
   setFilename: (name: string) => void;
   theme: string;
   showWindowControls: boolean;
+  editorBg?: string;
 }
 
-export default function CodeEditor({ code, setCode, filename, setFilename, theme, showWindowControls }: CodeEditorProps) {
+export default function CodeEditor({ code, setCode, filename, setFilename, theme, showWindowControls, editorBg = "#050505" }: CodeEditorProps) {
   const [html, setHtml] = useState("");
   const [error, setError] = useState(false);
 
@@ -93,7 +94,10 @@ export default function CodeEditor({ code, setCode, filename, setFilename, theme
   }, [code, theme]);
 
   return (
-    <div className="relative font-mono w-full min-h-[200px] rounded-lg shadow-2xl border-4 border-[#050505] bg-[#050505] overflow-hidden">
+    <div 
+      className="relative font-mono w-full min-h-[200px] rounded-lg shadow-2xl border-4 border-[#050505] overflow-hidden"
+      style={{ backgroundColor: editorBg }}
+    >
       {/* Background highlighted code (dictates height) */}
       <div 
         className="shiki-container w-full"
